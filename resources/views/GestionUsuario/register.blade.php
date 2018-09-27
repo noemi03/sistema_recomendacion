@@ -143,6 +143,9 @@
                  
           </div>
 
+
+
+
           @include('adminlte::auth.terms')
 
          
