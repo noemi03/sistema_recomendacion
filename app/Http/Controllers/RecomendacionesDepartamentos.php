@@ -113,18 +113,6 @@ class RecomendacionesDepartamentos extends Controller
         $recomendacionDepartamentoall->delete();
         
     }
-    public function listageneral(){  
-
-       
-        $recomendacionDepartamentoall=RecomendacionesDepartamento::with(['DepartamentoV2','RecomendacionV2'])
-           ->get();
-        
-        return response()->json($recomendacionDepartamentoall);
-      }
-      public function vergeneral(){
-
-        return view('Gestiongeneral.general');
-
-    }
+    
 
 }

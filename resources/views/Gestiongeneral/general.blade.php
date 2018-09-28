@@ -18,6 +18,7 @@
                   @endif
 
           
+          <input type="hidden" id="iduser" value="{{Auth::user()->id}}">
     <div class="container">
 
         <div class="row">

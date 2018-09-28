@@ -138,11 +138,11 @@ class Usuarios extends Controller
           $User->delete();
         
     }
-//  public function consultageneral() {
-//         $usuarios = Usuario::with('miDepartamento')->get();
-//         //dd($usuarios);
-//         return response()->json($usuarios);
-//     }
+    public function vergeneral(){
+
+        return view('Gestiongeneral.general');
+
+    }
 
     //esta consulta filtra las recomendaciones de el usuario en cuestion
     public function MisDepartamentos($id){

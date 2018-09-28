@@ -3,7 +3,9 @@
 
         
            <thead>
-               <th>Estado</th>
+               <th>Nombre</th>
+               <th>Apellido</th>
+         
                <th>Departamento</th> 
                <th>Recomendacion</th> 
                                 
