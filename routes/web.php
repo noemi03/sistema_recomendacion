@@ -59,6 +59,12 @@ Route::resource('/Usuario', 'Usuarios');
 Route::get('/Usuario', 'Usuarios@index');
 Route::get('/UsuarioCargar','Usuarios@cargarUsuario');
 Route::get('/general','Usuarios@vergeneral');
+
+//mis departamentos
+
+Route::get('/MisDepartamentos/{id?}','Usuarios@MisDepartamentos');
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 //Ruta de tipo recomendaciones
 Route::resource('/TipoRecomendacion','TipoRecomendaciones');
