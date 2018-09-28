@@ -144,6 +144,11 @@ class Usuarios extends Controller
 //         return response()->json($usuarios);
 //     }
 
-    
+    //esta consulta filtra las recomendaciones de el usuario en cuestion
+    public function MisDepartamentos($id){
+        $usuarios = Usuario::with('MisDepartamentos')->where('id',$id)->firstOrFail();
+        //dd($usuarios);
+        return response()->json($usuarios);
+    }
 
 }
