@@ -3,11 +3,10 @@
 
         
            <thead>
-               <th>Usuario</th>
-               <th>Apellido</th>  
-               <th>Cedula</th>      
-               <th>Departamento</th>  
-               <th>Recomendacion</th>              
+               <th>Estado</th>
+               <th>Departamento</th> 
+               <th>Recomendacion</th> 
+                                
            </thead>
            <tbody id="tablageneral1">
           

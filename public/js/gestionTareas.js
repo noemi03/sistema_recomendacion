@@ -14,6 +14,8 @@ function ingresarTareas(){
 
     var FrmData = {
         descripcion:$('#tarea_descripcion').val(),
+        porcentajeCumplimiento:$('#tarea_porcentajeCumplimiento').val(),
+        porcentajeEquivalente:$('#tarea_porcentajeEquivalente').val(),
         recomendacionesDepartamentoid: $('#tarea_recomendacionD').val(),
         
     
@@ -73,6 +75,8 @@ function prepararactualizarTarea(id){
       
         $('#idTarea').val(data.id);
         $('#tareadescripcion').val(data.descripcion);
+        $('#tareaporcentajeCumplimiento').val(data.porcentajeCumplimiento);
+        $('#tarea_porcentajeEquivalente').val(data.porcentajeEquivalente);
         $('#tarearecope').val(data.r_departamento.id);                   
     });
 }
@@ -81,6 +85,8 @@ function TareasUpdate(){
    var FrmData = {
         id: $('#idTarea').val(),
         descripcion:$('#tareadescripcion').val(),
+        porcentajeCumplimiento:$('#tareaporcentajeCumplimiento').val(),
+        porcentajeEquivalente:$('#tarea_porcentajeEquivalente').val(),
         recomendacionesDepartamentoid:$('#tarearecope').val(),
     
     }
@@ -106,6 +112,8 @@ function TareasUpdate(){
 /*PARA LIMPIAR LOS COMPONENTES DEL FORMULARIO*/
 function limpiar(){
     $('#tarea_descripcion').val('');
+    $('#tarea_porcentajeCumplimiento').val('');
+    $('#tarea_porcentajeEquivalente').val('');
 }
 
 
@@ -116,6 +124,8 @@ function cargartablaTarea(data){
     $("#tablatareas").append(
         "<tr id='fila_cod"+"'>\
          <td>"+ data.descripcion+"</td>\
+         <td>"+ data.porcentajeCumplimiento+"</td>\
+         <td>"+ data.porcentajeEquivalente+"</td>\
          <td>"+ data.r_departamento.estado+"</td>\
          <td class='row'><button type='button' class='btn btn-success' data-toggle='modal' data-target='#actualizarTareasmodal'onClick='prepararactualizarTarea("+data.id+")'><i class='fa fa-edit'></i></button></td>\
          <td class='row'><button type='button' class='btn btn-danger' id='btn-confirm' onClick='eliminarTareas("+data.id+")'><i class='fa fa-trash'></i></button></td>\
@@ -137,6 +147,8 @@ $("#B_Tareas").keyup(function() {
                 $("#tablatareas").append(
                        "<tr id='"+item.id+"'>"+
                         "<td>"+ item.descripcion+"</td>"+
+                        "<td>"+ item.porcentajeCumplimiento+"</td>"+
+                        "<td>"+ item.porcentajeEquivalente+"</td>"+
                         "<td>"+ item.r_departamento.estado+"</td>"+
                         "<td class='row'><button type='button' class='btn btn-success' data-toggle='modal' data-target='#actualizarTareasmodal' onClick='prepararactualizarTarea("+item.id+")'><i class='fa fa-edit'></i></button></td>"+
                         "<td class='row'><button type='button' class='btn btn-danger' id='btn-confirm' onClick='eliminarTareas("+item.id+")'><i class='fa fa-trash'></i></button></td></tr>"

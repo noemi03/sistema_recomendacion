@@ -17,6 +17,8 @@
  <thead>
    <tr >
      <th >Tarea</th>
+     <th >%Cumplimiento</th>
+     <th >%Equivalente</th>
      <th >Recomendacion Departamento</th>
      <th colspan="2">Aciones</th>    
         

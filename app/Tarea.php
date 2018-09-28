@@ -10,7 +10,7 @@ class Tarea extends Model
     protected $table = 'tarea';
     public $timestamps = false;
     protected $fillable = [
-        'descripcion','recomendacionesDepartamentoid',];
+        'descripcion','porcentajeCumplimiento','porcentajeEquivalente','recomendacionesDepartamentoid',];
 
     public function RecomendacionesDepartamento()
     {    

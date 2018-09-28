@@ -40,6 +40,22 @@
             <span style='color:red;'> {{ $errors->first('descripcion') }} </span>
         @endif 
     </div>
+    <div class="form-group">
+        <label for="porcentajeCumplimiento">Porcentaje Cumplimiento</label>
+        <input type="text" class="form-control" name="porcentajeCumplimiento"  value="{{$tarea->porcentajeCumplimiento}}">
+
+        @if($errors->has('porcentajeCumplimiento'))
+            <span style='color:red;'> {{ $errors->first('porcentajeCumplimiento') }} </span>
+        @endif 
+    </div>
+    <div class="form-group">
+        <label for="porcentajeEquivalente">Porcentaje Equivalente</label>
+        <input type="text" class="form-control" name="porcentajeEquivalente"  value="{{$tarea->porcentajeEquivalente}}">
+
+        @if($errors->has('porcentajeEquivalente'))
+            <span style='color:red;'> {{ $errors->first('porcentajeEquivalente') }} </span>
+        @endif 
+    </div>
     
     
 <div class="form-group row">

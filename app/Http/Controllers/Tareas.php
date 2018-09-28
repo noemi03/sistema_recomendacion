@@ -42,7 +42,9 @@ class Tareas extends Controller
     {
              
         $tareaVar= new Tarea();
-        $tareaVar->descripcion= $request->descripcion;      
+        $tareaVar->descripcion= $request->descripcion;    
+        $tareaVar->porcentajeCumplimiento= $request->porcentajeCumplimiento; 
+        $tareaVar->porcentajeEquivalente= $request->porcentajeEquivalente;   
         $tareaVar->recomendacionesDepartamentoid=$request->recomendacionesDepartamentoid;
         $tareaVar->save();
         $tareaall=Tarea::with(['RDepartamento'])->find($tareaVar->id);
@@ -99,7 +101,9 @@ class Tareas extends Controller
           
              
         $tareaVar=Tarea::find($id);
-        $tareaVar->descripcion= $request->descripcion;      
+        $tareaVar->descripcion= $request->descripcion; 
+        $tareaVar->porcentajeCumplimiento= $request->porcentajeCumplimiento; 
+        $tareaVar->porcentajeEquivalente= $request->porcentajeEquivalente;      
         $tareaVar->recomendacionesDepartamentoid= $request->recomendacionesDepartamentoid;
             
             if ($tareaVar->save()) {

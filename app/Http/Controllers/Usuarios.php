@@ -138,16 +138,12 @@ class Usuarios extends Controller
           $User->delete();
         
     }
- public function consultageneral() {
-        $usuarios = Usuario::with('miDepartamento')->get();
-        //dd($usuarios);
-        return response()->json($usuarios);
-    }
+//  public function consultageneral() {
+//         $usuarios = Usuario::with('miDepartamento')->get();
+//         //dd($usuarios);
+//         return response()->json($usuarios);
+//     }
 
-    public function vergeneral(){
-
-        return view('Gestiongeneral.general');
-
-    }
+    
 
 }

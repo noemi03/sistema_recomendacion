@@ -21,6 +21,18 @@
             <span style='color:red;'> {{ $errors->first('descripcion') }} </span>
         @endif 
     </div>
+    <div class="form-group">
+        <label for="porcentajeCumplimiento">Porcentaje Cumplimiento</label>
+        <input type="text" class="form-control" name="porcentajeCumplimiento" id="tarea_porcentajeCumplimiento" placeholder="Ingrese la descripcion">
+
+       
+    </div>
+    <div class="form-group">
+        <label for="porcentajeEquivalente">Porcentaje Equivalente</label>
+        <input type="text" class="form-control" name="porcentajeEquivalente" id="tarea_porcentajeEquivalente" placeholder="Ingrese la descripcion">
+
+         
+    </div>
     
       <div class="form-group">
         <label for="recomendacionesDepartamentoid">Recomendacion</label>

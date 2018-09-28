@@ -58,7 +58,7 @@ Route::get('/TipoUsuarioCargar', 'TipoUsuarios@cargarTipoUsuario');
 Route::resource('/Usuario', 'Usuarios');
 Route::get('/Usuario', 'Usuarios@index');
 Route::get('/UsuarioCargar','Usuarios@cargarUsuario');
-Route::get('/general','Usuarios@vergeneral');
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 //Ruta de tipo recomendaciones
 Route::resource('/TipoRecomendacion','TipoRecomendaciones');
@@ -131,6 +131,8 @@ Route::get('/RecomendacionesDepartamento', 'RecomendacionesDepartamentos@index')
 Route::get('/preparactualizarRecomendacioD/{id}','RecomendacionesDepartamentos@preparactualizarrecomendacioD');
 /*PARA EXTRAER TODOS LOS USUARIOS*/
 Route::get('/RecomendacioDMostrar/{id}','RecomendacionesDepartamentos@listarecomendacionD');
+Route::get('/MostraDRgeneral','RecomendacionesDepartamentos@listageneral');
+Route::get('/general','RecomendacionesDepartamentos@vergeneral');
 ////////////////////////////////////////////////////////////////////////////////////////////
 Route::resource('/Departamentouser', 'Departamentousers');
 Route::get('/Departamentouser', 'Departamentousers@index');
@@ -140,6 +142,6 @@ Route::get('/DepartamentouserMostrar/{id}','Departamentousers@listarDepartamento
 
 //hola prueba
 
-Route::get('/Mostrausuariogeneral','Usuarios@consultageneral');
+//Route::get('/Mostrausuariogeneral','Usuarios@consultageneral');
 
 

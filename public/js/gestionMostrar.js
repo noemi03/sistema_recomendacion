@@ -8,7 +8,7 @@ window.onload = function() {
 
 function cargartablaGeneral(){
     
-    $.get('Mostrausuariogeneral', function (data) { 
+    $.get('MostraDRgeneral', function (data) { 
          $('#tablageneral1').html(''); // limpia el tbody de la tabla
          $.each(data, function(i, item) { // recorremos cada uno de los datos que retorna el objero json n valores
             // agregaso uno a uno los valores del objero json como una fila
@@ -16,12 +16,10 @@ function cargartablaGeneral(){
             $('#tablageneral1').append(
                 '<tr>'+
                   
-                    '<td >'+item.name+'</td>'+
-                    '<td >'+item.apellidos+'</td>'+
-                    '<td >'+item.cedula+'</td>'+
-                    '<td >'+item.mi_departamento.departament.descripcion+'</td>'+
-                    '<td >'+item.mi_departamento.departament.mi_recomendacion.recoment.descripcion+'</td>'+
-                    
+                    '<td >'+item.estado+'</td>'+
+                    '<td >'+item.departamento_v2.descripcion+'</td>'+
+                    '<td >'+item.recomendacion_v2.descripcion+'</td>'+
+                
                 '</tr>'
             );
      });

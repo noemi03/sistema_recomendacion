@@ -25,7 +25,7 @@
                         <div class="panel " >
                         <legend class="text-center header">
                             <span class=" text-center"><i class="fa fa-user bigicon"></i></span>
-                            <span> Gestion Tipos UUsuarios </span> 
+                            <span> Gestion Tipos Usuarios </span> 
                         </legend>
                             <div class="panel-body"> 
 
