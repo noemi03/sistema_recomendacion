@@ -18,8 +18,7 @@ function cargartablaGeneral(id){
                   
                     '<td >'+item.name+'</td>'+
                     '<td >'+item.apellidos+'</td>'+
-                    '<td >'+item.mis_departamentos.departament.descripcion+'</td>'+
-                   '<td >'+item.mis_departamentos.departament.mi_recomendacion.recoment.descripcion+'</td>'+
+                    
                 
                 '</tr>'
             );
