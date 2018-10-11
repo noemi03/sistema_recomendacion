@@ -47,7 +47,7 @@ class Informes extends Controller
         $informeVar->porcentajeCumplido= $request->porcentajeCumplido;
         $informeVar->observacion= $request->observacion;
         $informeVar->codigoInforme = $request->codigoInforme;
-        $informeVar->iddocumento = $request->iddocumento;
+      
 
 
    

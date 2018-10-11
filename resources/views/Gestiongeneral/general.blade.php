@@ -17,17 +17,27 @@
                       </div>
                   @endif
 
-          
-          <input type="hidden" id="iduser" value="{{Auth::user()->id}}">
+       
     <div class="container">
 
         <div class="row">
-                    <div class="col-md-11">
+                    <div class="col-md-10">
                         <div class="panel " >
                         <legend class="text-center header">
                             <span class=" text-center"><i class="fa fa-cogs"></i></span>
                             <span>  GENERAL </span> 
+                            
+                        @if(! Auth::guest())
+                            <input type="hidden" id="iduser" value="{{Auth::user()->id}}"> 
+                            {{-- <p>
+                                {{Auth::user()->id}}
+                            </p> --}}
+                        @else
                            
+                            <input type="hidden" id="iduser" value="0">
+                        @endif
+
+                        
                         </legend>
                             <div class="panel-body"> 
 

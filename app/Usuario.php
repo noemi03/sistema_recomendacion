@@ -34,7 +34,7 @@ public function  Departamentouser(){
     }
 
     public function MisDepartamentos(){
-        return $this->hasMany('App\Departamentouser','idusuario', 'id')->with('Departament');
+        return $this->hasOne('App\Departamentouser','idusuario', 'id')->with('Departament');
     }
 
 }
