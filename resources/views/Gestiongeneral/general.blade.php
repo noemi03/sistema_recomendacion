@@ -17,7 +17,12 @@
                       </div>
                   @endif
 
+<<<<<<< HEAD
        
+=======
+          
+          <input type="hidden" id="iduser" value="{{Auth::user()->id}}">
+>>>>>>> 2ea8ed51b1fb1f31325a637bc0c939aa0bf62687
     <div class="container">
 
         <div class="row">
