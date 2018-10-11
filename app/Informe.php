@@ -11,7 +11,7 @@ class Informe extends Model
     protected $primaryKey = 'id';
    protected $fillable = [
         'fechaAprobacion', 'memorandoSolicitud', 'temaExamen','porcentajeCumplido', 
-        'observacion', 'codigoInforme','archivos',
+        'observacion', 'codigoInforme',
     ];
 
 public function  Subtema(){

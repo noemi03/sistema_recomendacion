@@ -68,7 +68,7 @@
                     <li><a href="{{ url('/Informe')}}"><i class="fa fa-list-alt" ></i>Gestion Informe</a></li>
                     <li><a href="{{ url('/subtema')}}"><i class="fa fa-file-o"></i>Gestion Subtema</a></li> 
                     <li><a href="{{ url('/recomendaciones')}}"><i class="fa fa-file"></i>Gestion Recomendacion </a></li> 
-                    <li><a href="{{ url('/RecomendacionesDepartamento')}}"><i class="fa fa-archive"></i>Gestion RecomendacionesD</a></li>
+                    <!-- <li><a href="{{ url('/RecomendacionesDepartamento')}}"><i class="fa fa-archive"></i>Gestion RecomendacionesD</a></li> -->
                     <li><a href="{{ url('/TipoRecomendacion') }}"><i class="fa fa-file-o"></i> Gestion TRecomendacion </a></li> 
                     <li><a href="{{ url('/Tarea')}}"><i class="fa fa-bar-chart"></i>Gestion Tarea</a></li>
                 

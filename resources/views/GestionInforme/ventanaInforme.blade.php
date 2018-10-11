@@ -38,10 +38,5 @@
                       <input type="text" class="form-control" id="InformeCodigo" name="codigoInforme">
                   </div>
               </div>
-              <div class="col-md-4">
-                  <div class="form-group has-feedback">
-                      <label for="informepdf">Subir Informe</label>
-                      <input type="file" class="form-control" id="infor_inforpdf" name="informepdf">
-                  </div>
-              </div>
+             
          </form>

@@ -40,7 +40,6 @@
                <th>%Cumplimiento</th>  
                <th>Observación</th>  
                <th>Codigo Informe</th>
-               <th>Archivos</th>
               <th colspan="2">Aciones</th>  
            </thead>
            <tbody id="tablainforme">
