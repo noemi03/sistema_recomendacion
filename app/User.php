@@ -30,6 +30,6 @@ class User extends Authenticatable
     ];
 
     public function TipoUsuario (){
-        return $this->belongsTo('App\TipoUsuario','tipoUsuario_id', 'id');
+        return $this->belongsTo('App\TipoUsuario','tipousuario_id', 'id');
     }
 }

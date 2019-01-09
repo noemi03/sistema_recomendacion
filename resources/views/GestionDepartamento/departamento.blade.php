@@ -68,6 +68,7 @@
    
   </div>
 </div>
+@include('GestionDepartamento.cuerpo')
 @endsection
 
            <script>

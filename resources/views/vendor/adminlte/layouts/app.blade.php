@@ -130,15 +130,15 @@ desired effect
 
 </body>
 </html>
+<script src="{{ asset('js/gestionCargos.js') }}"></script> 
 <script src="{{ asset('js/gestioDepartamento.js') }}"></script>  
-<script src="{{ asset('js/gestioEstado.js') }}"></script> 
-<script src="{{ asset('js/gestionTRecomendacion.js') }}"></script> 
 <script src="{{ asset('js/gestionTipoUsuarios.js') }}"></script>
 <script src="{{ asset('js/gestionUsuario.js') }}"></script>
-<script src="{{ asset('js/gestionAvance.js') }}"></script>
-<script src="{{ asset('js/gestionTareas.js') }}"></script>
-<script src="{{ asset('js/gestionActividad.js') }}"></script>
-<script src="{{ asset('js/gestionRecomendacion.js') }}"></script>
+<script src="{{ asset('js/gestionInforme1.js') }}"></script>
+<script src="{{ asset('js/gestionTInforme.js')}}"></script>
 <script src="{{ asset('js/gestionSubtema.js') }}"></script>
-<script src="{{ asset('js/gestionInforme.js') }}"></script>
-<script src="{{ asset('js/gestionRecomendacionDepartamento.js') }}"></script>
+<script src="{{ asset('js/gestionRecomendacion.js') }}"></script> 
+<script src="{{ asset('js/gestionActividad.js') }}"></script>
+<script src="{{ asset('js/gestionTareas.js') }}"></script>
+
+

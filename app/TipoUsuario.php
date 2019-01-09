@@ -10,10 +10,10 @@ class TipoUsuario extends Model
     protected $primaryKey = 'id';
     public $timestamps=false;
     protected $fillable = [
-        'descripcion', 
+        'descripciontipo', 
     ];
 
      public function  Usuario(){
-        return $this->hasMany('App\Usuario','tipoUsuario_id', 'id');
+        return $this->hasMany('App\Usuario','tipousuario_id', 'id');
     }
 }

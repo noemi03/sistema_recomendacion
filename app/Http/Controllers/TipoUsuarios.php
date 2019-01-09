@@ -38,13 +38,13 @@ class TipoUsuarios extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'descripcion'=>'required'
+            'descripciontipo'=>'required'
             
     
         ]); 
              
              $tipoVar = new TipoUsuario();
-             $tipoVar->descripcion= $request->descripcion;
+             $tipoVar->descripciontipo= $request->descripciontipo;
             
             if ($tipoVar->save()) {
                 return response()->json($tipoVar);
@@ -88,13 +88,13 @@ class TipoUsuarios extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'descripcion'=>'required'
+            'descripciontipo'=>'required'
             
     
         ]); 
              
            $tipoVar =TipoUsuario::find($id);
-             $tipoVar->descripcion = $request->descripcion;
+             $tipoVar->descripciontipo = $request->descripciontipo;
             
             if (  $tipoVar->save()) {
               return response()->json($tipoVar);

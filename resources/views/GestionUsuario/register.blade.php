@@ -47,7 +47,7 @@
                            <div class="row">
                             <div class="col-md-4">
                                    <div class="form-group has-feedback">
-                                    <select class="form-control" id="sexo" name="sexo" >
+                                    <select class="form-control" id="sexo" name="sexo" placeholder="Ingrese la Cedula" >
                                         <option disabled selected>Sexo</option>
                                         <option value="Femenino">Femenino</option>
                                         <option value="Masculino">Masculino</option>
@@ -80,51 +80,23 @@
 
                              </div>
                                
-                               <div class="col-md-4">
-                                 <div class="form-group has-feedback">
-                                      <select class="form-control" id="estado" name="estado" >
-                                        <option disabled selected>Estado</option>
-                                        <option value="Activo">Activo</option>
-                                        <option value="Activo">Inactivo</option>
-                                      </select>        
-                                  </div>
-                      
-                               </div>
+                               
                               <div class="col-md-4">
                               <div class="form-group has-feedback">
 
-                                <select class="form-control" name="tipoUsuario_id" id="tipoUsuario_id">
+                                <select class="form-control" name="tipousuario_id" id="tipousuario_id">
                                   <option disabled selected>Tipo Usuario</option>
                                   @foreach($tipoUsuario as $s)
-                                  <option value="{{ $s->id }}">{{ $s->descripcion }}</option>
+                                  <option value="{{ $s->id }}">{{ $s->descripciontipo }}</option>
           
                                      @endforeach
                                 </select>
 
                               </div>   
-                            </div>
-
-
-
-                              
-                          </div>
-                          
-                        <div class="row">
-                           
-                            <div class="col-md-4">
-                                <label class="lcontainer" style="color: blue; font-size: 14px">Aceptar Terminos y Condiciones
-                                       <input type="checkbox" name="terms">
-                                      <span class="lcheckmark"></span>
-                                </label>
-                            </div>
+                               </div>
+                              <div class="row">
+                         
                             <div class="col-md-1">
-                                <div class="form-group">
-                                    <button type="button" class="btn btn-block btn-flat" data-toggle="modal" data-target="#termsModal">Ver </button>
-                                </div>
-                            </div>
-
-
-                            <div class="col-md-7">
                                 <button type="button" class="btn btn-primary" id="btnU" onclick="ingresarUsuario()">Guardar</button>
 
                                 
@@ -133,6 +105,11 @@
 
                         </div>
 
+                                                          
+                          </div>
+
+
+  
                   
                   </div><!-- /.form-box -->
               </div><!-- /.register-box -->

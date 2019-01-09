@@ -5,7 +5,7 @@
               <div class="col-md-4">
                  <div class="form-group has-feedback">
                     <label> <b>Descripción:</b></label>
-                    <input type="text" class="form-control" placeholder="Descripción" id="descripcionAidfz" name="descripcion"required />
+                    <input type="text" class="form-control" placeholder="Descripción" id="descripcionA" name="descripcionActividad"required />
                  </div>
               </div>
               <div class="col-md-4">
@@ -19,9 +19,9 @@
                                    <label for="tarea_id" class="col-sm-2 col-form-label">TAREA</label>
                                     <div class="col-sm-10">
                                       <select class="form-control" id="TareaA"   name="tarea_id"required/>
-                                       @if(isset($tarea))
-                                      @foreach($tarea as $t)
-                                      <option value="{{$t->id}}" selected>{{$t->descripcion}}</option>
+                                       @if(isset($tareas))
+                                      @foreach($tareas as $t)
+                                      <option value="{{$t->id}}" selected>{{$t->descripcionTarea}}</option>
                                         
                                       @endforeach
                                       @endif

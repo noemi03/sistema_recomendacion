@@ -9,7 +9,7 @@ class Subtema extends Model
     public $timestamps = false; 
     protected $table = 'subtema';
     protected $fillable = [
-        'descripcion', 'conclusion','porcentajeCumplido','informe_id', 
+        'descripcionSubtema','conclusion','porcentajeCumplidoSubtema','estadoSubtema','informe_id', 
     ];
 
     public function Recomendacion(){

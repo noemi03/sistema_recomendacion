@@ -1,7 +1,6 @@
 
 @extends('adminlte::layouts.app')
-@section('main-content') 
- <h1>
+@section('main-content')  <h1>
        
         <small>@yield('contentheader_description')</small>
     </h1>
@@ -16,12 +15,10 @@
                               @endforeach
                           </ul>
                       </div>
-                  @endif
-
-          
+                  @endif  
     <div class="container">
             <div class="row">
-                    <div class="col-md-10 ">
+                    <div class="col-md-11 ">
                         <div class="panel " >
                         <legend class="text-center header">
                             <span class=" text-center"><i class="fa fa-list-alt"></i></span>
@@ -45,7 +42,7 @@
 
 
         <div class="row">
-                    <div class="col-md-10 ">
+                    <div class="col-md-12">
                         <div class="panel " >
                         <legend class="text-center header">
                             <span class=" text-center"><i class="fa fa-list-alt"></i></span>
@@ -57,7 +54,7 @@
                                 @include('GestionInforme.InformeMostrar')
                                 @endif
                             </div>
-                            
+                         
                         </div>
                     </div>
             </div>
@@ -67,19 +64,18 @@
     </div>
    
   </div>
-</div>
- @include('GestionInforme.modalInforme')
+   @include('GestionInforme.modalInforme')
+   @include('GestionInforme.ModalSubtema')
+   @include('GestionSubtema.modalSubtema')
+
+   
+   
+
+  
+  </div>
 @endsection
 
-           <script>
-              $(function () {
-                  $('input').iCheck({
-                      checkboxClass: 'icheckbox_square-blue',
-                      radioClass: 'iradio_square-blue',
-                      increaseArea: '20%' // optional
-                  });
-              });
-          </script>
 
 
+  
 

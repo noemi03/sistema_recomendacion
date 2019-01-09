@@ -3,33 +3,28 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Actividad;
 
 class Tarea extends Model
 {
+    public $timestamps = false; 
     protected $table = 'tarea';
-    public $timestamps = false;
+    protected $primaryKey = 'id';
     protected $fillable = [
-        'descripcion','porcentajeCumplimiento','porcentajeEquivalente','recomendacionesDepartamentoid',];
+        'descripcionTarea','porcentajeCumplimientotarea', 'estadoTarea','fechaCreacion','fecha'
+        ,'recomendacionesusuarios_id',
+    ];
 
-    public function RecomendacionesDepartamento()
-    {    
-     return $this->belongsTo('App\RecomendacionesDepartamento','recomendacionesDepartamentoid','id');
-    }
 
     public function Actividades()
     {    
      return $this->hasMany('App\Actividad','id');
     }
-   public function RDepartamento(){
-    
-        return $this->hasOne('App\RecomendacionesDepartamento','id','recomendacionesDepartamentoid');
-                              
-        }
-
-
-
-
-    
+   
+    public function  RecomendacionesUsuarios(){
+        return $this->belongsTo('App\RecomendacionUsuario', 'recomendacionesusuarios_id', 'id');
+}
+  public function RecomendacionesUsuariosV2(){
+    return $this->hasOne('App\RecomendacionUsuario','id', 'recomendacionesusuarios_id');                      
+  }
 
 }

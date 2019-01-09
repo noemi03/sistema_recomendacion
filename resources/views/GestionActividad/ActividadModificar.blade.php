@@ -32,11 +32,11 @@
 
     {{ csrf_field() }}
     <div class="form-group">
-        <label for="descripcionA">Descripción</label>
-        <input type="text" class="form-control" name="descripcionA"  value="{{$actividad->descripcionA}}">
+        <label for="descripcionActividad">Descripción</label>
+        <input type="text" class="form-control" name="descripcionActividad"  value="{{$actividad->descripcionA}}">
 
-        @if($errors->has('descripcionA'))
-            <span style='color:red;'> {{ $errors->first('descripcionA') }} </span>
+        @if($errors->has('descripcionActividad'))
+            <span style='color:red;'> {{ $errors->first('descripcionActividad') }} </span>
         @endif 
     </div>
     
@@ -56,10 +56,10 @@
       <select class="form-control" name="tarea_id" >
         
         @foreach($tarea as $t)
-         @if($actividad->tarea_id == $t->descripcion)
-        <option value="{{$t->id}}" selected>{{$t->descripcion}}</option>
+         @if($actividad->tarea_id == $t->descripcionTarea)
+        <option value="{{$t->id}}" selected>{{$t->descripcionTarea}}</option>
           @else
-          <option value="{{$t->id}}">{{$t->descripcion}}</option>
+          <option value="{{$t->id}}">{{$t->descripcionTarea}}</option>
           @endif
         @endforeach
 

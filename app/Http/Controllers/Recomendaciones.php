@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Recomendacion;
 use App\Subtema;
-use App\Estado;
-use App\TipoRecomendacion;
+use App\Usuario;
+use App\Recomendacion;
 use Illuminate\Support\Facades\DB;
+
 class Recomendaciones extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -17,13 +18,13 @@ class Recomendaciones extends Controller
      */
     public function index()
     {
-        
-        $subtema = Subtema::with('Recomendacion')->get();
-        $estado = Estado::with('Recomendacion')->get();
-        $tipoR = TipoRecomendacion::with('Recomendacion')->get();
-        $recomendacion = Recomendacion::with('subTemas','Estado','TipoRecomendacion')->get();    
-        return view('GestionRecomendaciones.recomendacion')->with(['recomendacion'=> $recomendacion,'subtema'=>$subtema,'estado'=>$estado,'tipoR'=>$tipoR]);
-    }
+        $recomendaciones =Recomendacion::with('subTemas')->get();
+        $subtemas=Subtema::with('Recomendacion')->get();
+        return view ('GestionRecomendaciones.recomendaciones')->with(['subtemas'=>$subtemas,
+        'recomendaciones'=>$recomendaciones]);
+    } 
+    
+    
 
     /**
      * Show the form for creating a new resource.
@@ -32,8 +33,10 @@ class Recomendaciones extends Controller
      */
     public function create()
     {
-        //
+        
     }
+
+    
 
     /**
      * Store a newly created resource in storage.
@@ -43,80 +46,74 @@ class Recomendaciones extends Controller
      */
     public function store(Request $request)
     {
+             
+        $recomendacionesVar= new Recomendacion();
+        $recomendacionesVar->descripcionRecomendacion= $request->descripcionRecomendacion;    
+        $recomendacionesVar->porcentajeCumplimiento= $request->porcentajeCumplimiento; 
+        $recomendacionesVar->estadoRecomendacion= $request->estadoRecomendacion;   
+        $recomendacionesVar->subtema_id=$request->subtema_id;     
+        $recomendacionesVar->save();
 
+        $recomendacionesall=Recomendacion::with(['subtemasV2'])->find($recomendacionesVar->id);
+              return response()->json($recomendacionesall);
+         
+               }
 
+                        
+    /*FUNCIÓN PARA BUSCAR EL TAREA A ACTUALIZAR */
+     public function preparactualizar($id){
+      $recomendacionesall=Recomendacion::with(['subtemasV2'])->find($id);
+        return response()->json($recomendacionesall);
+     }
 
-        $recomendacionVar = new Recomendacion();
-        $recomendacionVar->descripcion = $request->descripcion;
-        $recomendacionVar->porcentajeCumplimiento = $request->porcentajeCumplimiento;
-        $recomendacionVar->subtema_id = $request->subtema_id;
-        $recomendacionVar->estado_id = $request->estado_id; 
-        $recomendacionVar->tiporecomendaciones_id = $request->tiporecomendaciones_id;
-        
-
-        
-        if ($recomendacionVar->save()) {
-            return back()->with('msj', 'Datos Guardados');
-        } else {
-            return back()->with('errormsj', '¡Error al guardar los datos!');
-        }
+     /*FUNCIÓN PARA MOSTRAR TODOS LOS TAREAS*/
+    public function listarRecomendaciones(){   
+   
+       $recomendacionesall=Recomendacion::with(['subtemasV2'])->get();
+         return response()->json($recomendacionesall);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit($id)
     {
-
-        $recomendacion = Recomendacion::with('subTemas','Estado','TipoRecomendacion')->first();
-        return  response()->json($recomendacion);
-    }
-
-   
-    public function buscar_Recomendacion($descripcion='')
-    {
-        $recomendacion = Recomendacion::with(['subTemas','Estado','TipoRecomendacion'])->Where('descripcion','like',"%$descripcion%")
-                                                    ->get();
-
-        return response()->json($recomendacion);
+        $subtemas=Subtema::all();
+        $recomendaciones=Recomendacion::find($id);
+        return view('GestionRecomendaciones.recomendaciones')->with(['edit'=>true,'subtemas'=>$subtemas,
+        'recomendaciones'=>$recomendaciones]);
     }
 
 
 
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, $id)
     {
-   
+                      
+        $recomendacionesVar=Recomendacion::find($id);        
+        $recomendacionesVar->descripcionRecomendacion= $request->descripcionRecomendacion;    
+        $recomendacionesVar->porcentajeCumplimiento= $request->porcentajeCumplimiento; 
+        $recomendacionesVar->estadoRecomendacion= $request->estadoRecomendacion;   
+        $recomendacionesVar->subtema_id=$request->subtema_id;
 
-        $recomendacionVar = Recomendacion::find($id);
-        $recomendacionVar->descripcion = $request->descripcion;
-        $recomendacionVar->porcentajeCumplimiento = $request->porcentajeCumplimiento;
-        $recomendacionVar->subtema_id = $request->subtema_id;
-        $recomendacionVar->estado_id = $request->estado_id; 
-        $recomendacionVar->tiporecomendaciones_id = $request->tiporecomendaciones_id;
+            if ($recomendacionesVar->save()) {
+            $recomendacionesall=Recomendacion::with(['subtemasV2'])->find($recomendacionesVar->id);
+              return response()->json($recomendacionesall);
+    
+            }else{
+                return back()->with('errormsj', '¡Error al guardar los datos!');
+    
+            }
+     
         
-        if ($recomendacionVar->save()) {
-            //return back()->with('msj', 'Datos Guardados');
-            return redirect('recomendaciones');
-        } else {
-            return back()->with('errormsj', '¡Error al guardar los datos!');
-        }
     }
-
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -124,9 +121,7 @@ class Recomendaciones extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        Recomendacion::destroy($id);
-        return back();
+    {   $recomendacionesall =Recomendacion::find($id);
+        $recomendacionesall->delete();
     }
-    
 }

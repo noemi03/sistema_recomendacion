@@ -9,20 +9,21 @@ class Recomendacion extends Model
     public $timestamps = false; 
     protected $table = 'recomendacion';
     protected $fillable = [
-        'descripcion','porcentajeCumplimiento','subtema_id','estado_id','tiporecomendaciones_id',
+        'descripcionRecomendacion','porcentajeCumplimiento','estadoRecomendacion','subtema_id'
     ];
+
 
     public function subTemas(){
         return $this->belongsTo('App\Subtema', 'subtema_id', 'id');
     }
-    public function Estado(){
-        return $this->belongsTo('App\Estado','estado_id', 'id');
+    
+     //para traer lo que esta en  subtema a recomendacion 
+    public function subtemasV2(){
+        return $this->hasOne('App\Subtema', 'id', 'subtema_id');
     }
-    public function TipoRecomendacion (){
-        return $this->belongsTo('App\TipoRecomendacion','tiporecomendaciones_id', 'id');
-    }
-     public function  RecomendacionesDepartamento()
-    {    
-     return $this->hasMany('App\RecomendacionesDepartamento','recomendacion_id','id');
-    }
-}
+
+    public function  RecomendacionesUsuarios(){
+        return $this->hasMany('App\RecomendacionUsuario','recomendacion_id','id');
+     }
+    
+      }

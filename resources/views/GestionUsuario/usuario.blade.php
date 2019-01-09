@@ -20,7 +20,7 @@
           
     <div class="container">
             <div class="row">
-                    <div class="col-md-10 text-center header">
+                    <div class="col-md-11 text-center header">
                         <div class="panel " >
                         <legend class="text-center header">
                             <span class=" text-center"><i class="fa fa-user bigicon"></i></span>
@@ -42,7 +42,7 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-10">
+                    <div class="col-md-11">
                         <div class="panel " >
                         <legend class="text-center header">
                             <span class=" text-center"><i class="fa fa-user bigicon"></i></span>
@@ -64,7 +64,8 @@
   </div>
 </div>
 @include('GestionUsuario.cuerpo1')
-
+@include('GestionUsuario.cuerpoUsuario')
+@include('GestionUsuario.modalconfirmareliminacionUsuario')
 
 @endsection
 

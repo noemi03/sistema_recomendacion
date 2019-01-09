@@ -3,13 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\RecomendacionUsuario;
 use App\Tarea;
-use App\RecomendacionesDepartamento;
-use Illuminate\Support\Facades\DB;
-
 class Tareas extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -17,10 +15,12 @@ class Tareas extends Controller
      */
     public function index()
     {
-        $tarea =Tarea::with('RecomendacionesDepartamento')->get();
-        $reco=RecomendacionesDepartamento::with('Tarea')->get();
-        return view ('GestionTareas.tareas')->with(['reco'=>$reco,'tarea'=>$tarea]);
-    } 
+        $tareas= Tarea::with('RecomendacionesUsuarios')->get();
+        $recomendacionesUsuarios= RecomendacionUsuario::with('Tareas')->get(); 
+        return view('GestionTareas.tareas')->with(['recomendacionesUsuarios'=>$recomendacionesUsuarios,
+        'tareas'=>$tareas ]);
+   
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -29,7 +29,7 @@ class Tareas extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -40,54 +40,60 @@ class Tareas extends Controller
      */
     public function store(Request $request)
     {
-             
         $tareaVar= new Tarea();
-        $tareaVar->descripcion= $request->descripcion;    
-        $tareaVar->porcentajeCumplimiento= $request->porcentajeCumplimiento; 
-        $tareaVar->porcentajeEquivalente= $request->porcentajeEquivalente;   
-        $tareaVar->recomendacionesDepartamentoid=$request->recomendacionesDepartamentoid;
-        $tareaVar->save();
-        $tareaall=Tarea::with(['RDepartamento'])->find($tareaVar->id);
-              return response()->json($tareaall);
-         
-           
+        $tareaVar->descripcionTarea= $request->descripcionTarea;      
+        $tareaVar->porcentajeCumplimientotarea= $request->porcentajeCumplimientotarea;
+        $tareaVar->estadoTarea= $request->estadoTarea;      
+        $tareaVar->fechaCreacion= $request->fechaCreacion;      
+        $tareaVar->fecha= $request->fecha;
+        $tareaVar->recomendacionesusuarios_id = $request->recomendacionesusuarios_id;
+                   
+           $tareaVar->save();
+            
+            $tareaall=Tarea::with(['RecomendacionesUsuariosV2'])->find($tareaVar->id);
+            return response()->json($tareaall);
     }
 
+    
+    public function preparactualizar($id){
 
-    /*FUNCIÓN PARA BUSCAR EL TAREA A ACTUALIZAR */
-     public function preparactualizar($id){
-      $tareaall=Tarea::with(['RDepartamento'])->find($id);
-        return response()->json($tareaall);
-     }
-
-     /*FUNCIÓN PARA MOSTRAR TODOS LOS TAREAS*/
-    public function listarTarea(){   
-   
-       $tareaall=Tarea::with(['RDepartamento'])->get();
-         return response()->json($tareaall);
+        $tareaall=Tarea::with(['RecomendacionesUsuariosV2'])->find($id);
+           return response()->json($tareaall);
+        }
+    
+        /*FUNCIÓN PARA MOSTRAR TODOS LOS TAREAS*/
+       public function listarTarea(){   
+      
+          $tareaall=Tarea::with(['RecomendacionesUsuariosV2'])->get();
+            return response()->json($tareaall);
+         }
+    
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
     }
 
-
-    public function buscar_Tarea($busqueda='')
-      {
-          $tarea = Tarea::with(['RDepartamento'])->Where('descripcion','like',"%$busqueda%")
-                                                      ->get();
-  
-          return response()->json($tarea);
-      }
-  
-  
-
-
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function edit($id)
     {
-        $reco=RecomendacionesDepartamento::all();
-        $tarea=Tarea::find($id);
-        return view('GestionTareas.tareas')->with(['edit'=>true,'reco'=>$reco,'tarea'=>$tarea]);
+        $tarea = Tarea::all();
+        $recomendacionesUsuarios = RecomendacionUsuario::find($id);
+  
+        return view('GestionTareas.tareas')->with(['edit' => true, 'recomendacionesUsuarios' =>$recomendacionesUsuarios,
+         'tarea' =>$tarea]);
+    
     }
-
-
-
 
     /**
      * Update the specified resource in storage.
@@ -98,31 +104,19 @@ class Tareas extends Controller
      */
     public function update(Request $request, $id)
     {
-          
-             
         $tareaVar=Tarea::find($id);
-        $tareaVar->descripcion= $request->descripcion; 
-        $tareaVar->porcentajeCumplimiento= $request->porcentajeCumplimiento; 
-        $tareaVar->porcentajeEquivalente= $request->porcentajeEquivalente;      
-        $tareaVar->recomendacionesDepartamentoid= $request->recomendacionesDepartamentoid;
-            
-            if ($tareaVar->save()) {
-            $tareaall=Tarea::with(['RDepartamento'])->find($tareaVar->id);
-              return response()->json($tareaall);
-    
-            }else{
-                return back()->with('errormsj', '¡Error al guardar los datos!');
-    
-            }
-     
+        $tareaVar->descripcionTarea= $request->descripcionTarea;      
+        $tareaVar->porcentajeCumplimientotarea= $request->porcentajeCumplimientotarea;
+        $tareaVar->estadoTarea= $request->estadoTarea;      
+        $tareaVar->fechaCreacion= $request->fechaCreacion;      
+        $tareaVar->fecha= $request->fecha;
+        $tareaVar->recomendacionesusuarios_id = $request->recomendacionesusuarios_id;
         
-    }
-
-    public function CargarDatos()
-    {   
-
-       $tareaall=Tarea::with(['RDepartamento'])->where('estado','activo')->get();
-        return response()->json($tareaall);
+           
+           $tareaVar->save();
+            
+            $tareaall=Tarea::with(['RecomendacionesUsuariosV2'])->find($tareaVar->id);
+            return response()->json($tareaall);
     }
 
     /**

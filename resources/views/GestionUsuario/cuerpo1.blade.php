@@ -2,7 +2,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header" align="center">
-          <h3 class="modal-title" > <b><i class="fa fa-file-text-o"></i> ASIGNAR DEPARTAMENTOS</b></h5>
+          <h3 class="modal-title" > <b><i class="fa fa-file-text-o"></i> ASIGNAR CARGO</b></h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           </button>
         </div>
@@ -14,12 +14,12 @@
         
          <div class="tab-content">
         <div id="asignar" class="tab-pane fade in active" class="form-group">
-        @include('GestionUsuario.ventanaModalDepartamentoUsuario') 
+        @include('GestionUsuario.ventanaModalCargoUsuario') 
         </div>
         <br>
         <br>
         <div id="mostrar" class="tab-pane fade">
-         @include('GestionUsuario.mostraUsuarioDepartamento')   
+         @include('GestionUsuario.mostrarUsuarioCargo')   
         </div>
       </div>
 

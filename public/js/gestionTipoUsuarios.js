@@ -9,7 +9,7 @@ function ingresarTipoUsuarios(){
         }); 
 
         var FrmData = {
-            descripcion:$('#descripcion').val(),
+            descripciontipo:$('#descripcion').val(),
           
         }
         $.ajax({
@@ -38,7 +38,7 @@ function llenarTipoUsuarios(){
                 // append permite agregar codigo en una etiqueta sin remplazar el contenido anterior
                 $('#tablaTipoUsuario').append(
                     '<tr>'+
-                        '<td>'+item.descripcion+'</td>'+
+                        '<td>'+item.descripciontipo+'</td>'+
                         '<td>'+
                           '<button type="button" class="btn btn-info btn-sm " onclick="editarTipoUsuarios('+item.id+')"><i class="fa fa-edit"></i></button>  '+
                         '</td>'+
@@ -76,7 +76,7 @@ function llenarTipoUsuarios(){
 function editarTipoUsuarios(id){
         $.get('TipoUsuario/'+id+'/edit', function (data) {
 
-              $('#descripcion').val(data.descripcion);
+              $('#descripcion').val(data.descripciontipo);
               $('#btnTU').attr('class','btn btn-warning');
               $('#btnTU').html("modificar");
               $('#btnTU').attr('onclick','ActualizarTipoUsuarios('+id+')');
@@ -93,7 +93,7 @@ function ActualizarTipoUsuarios(id){
             }
         }); 
         var FrmData = {
-            descripcion: $('#descripcion').val(),
+            descripciontipo: $('#descripcion').val(),
         }
         $.ajax({
             url:'TipoUsuario/'+id, // Url que se envia para la solicitud

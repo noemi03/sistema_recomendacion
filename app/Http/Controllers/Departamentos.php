@@ -42,13 +42,13 @@ class Departamentos extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'descripcion'=>'required'
+            'descripcionDepartamento'=>'required'
             
     
         ]); 
              
         $departamentoVar= new Departamento();
-        $departamentoVar->descripcion = $request->descripcion;
+        $departamentoVar->descripcionDepartamento = $request->descripcionDepartamento;
             
             if ($departamentoVar->save()) {
                 //return back()->with('msj','Datos guardados');
@@ -79,7 +79,7 @@ class Departamentos extends Controller
       
              
         $departamentoVar=Departamento::find($id);
-        $departamentoVar->descripcion = $request->descripcion;
+        $departamentoVar->descripcionDepartamento = $request->descripcionDepartamento;
         $departamentoVar->save();
             
                 return response()->json($departamentoVar);

@@ -28,19 +28,19 @@
 
 
 
-
 <div class="table-responsive">
     <table class="table table-hover table table-bordered  text-center">
 
         
            <thead>
                <th>Fecha Aprobación</th>
-               <th>Memorando Solicitud</th>     
-               <th>Tema Examen</th>  
-               <th>%Cumplimiento</th>  
-               <th>Observación</th>  
-               <th>Codigo Informe</th>
-              <th colspan="2">Aciones</th>  
+               <th>Fecha Limite</th>
+              <th>Codigo Informe</th>
+               <th>Estado </th>
+               <th>Observacion </th>
+               <th>Tipo Informe</th>
+
+              <th colspan="4"> <br>Acciones  <br><br></th>  
            </thead>
            <tbody id="tablainforme">
           
@@ -49,3 +49,4 @@
        
        </table>
     </div>
+    @include('GestionInforme.estado')

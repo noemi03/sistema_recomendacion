@@ -39,9 +39,10 @@ class Subtemas extends Controller
     {
         
         $subtemaVar = new Subtema();
-        $subtemaVar->descripcion = $request->descripcion;
-        $subtemaVar->conclusion = $request->conclusion;
-        $subtemaVar->porcentajeCumplido = $request->porcentajeCumplido;
+        $subtemaVar->descripcionSubtema = $request->descripcionSubtema;
+        $subtemaVar->conclusion = "SIN CONCLUSION";
+        $subtemaVar->porcentajeCumplidoSubtema= $request->porcentajeCumplidoSubtema;
+        $subtemaVar->estadoSubtema = "SIN ASIGNAR";
         $subtemaVar->informe_id = $request->informe_id;
         $subtemaVar->save();
         
@@ -58,10 +59,12 @@ class Subtemas extends Controller
      }
 
      /*FUNCIÓN PARA MOSTRAR TODOS LOS SUBTEMA*/
-    public function listasubtema(){   
-      $subtemaall=Subtema::with(['InformeV2'])->get();
-         return response()->json($subtemaall);
+    public function listasubtema(){
+    $subtemaall=Subtema::with(['InformeV2'])->get();
+         return response()->json($subtemaall);   
+      
       }
+
 
     public function edit($id)
     {
@@ -83,9 +86,10 @@ class Subtemas extends Controller
     
 
         $subtemaVar = Subtema::find($id);
-        $subtemaVar->descripcion = $request->descripcion;
+        $subtemaVar->descripcionSubtema = $request->descripcionSubtema;
         $subtemaVar->conclusion = $request->conclusion;
-        $subtemaVar->porcentajeCumplido = $request->porcentajeCumplido;
+        $subtemaVar->porcentajeCumplidoSubtema= $request->porcentajeCumplidoSubtema;
+        $subtemaVar->estadoSubtema = $request->estadoSubtema;
         $subtemaVar->informe_id = $request->informe_id;
         
         if ($subtemaVar->save()) {
@@ -93,7 +97,7 @@ class Subtemas extends Controller
               return response()->json($subtemaall);
         } else {
             return back()->with('errormsj', '¡Error al guardar los datos!');
-        }
+        } 
     }
 
     /**
@@ -112,9 +116,25 @@ class Subtemas extends Controller
 
     public function buscar_Subtema($descripcion='')
     {
-        $subtema =    Subtema::with(['InformeV2'])->Where('descripcion','like',"%$descripcion%")
+        $subtema =    Subtema::with(['InformeV2'])->Where('descripcionSubtema','like',"%$descripcion%")
                                                     ->get();
 
         return response()->json($subtema);
     }
+
+
+
+    public function modificarSubtemaEstado(Request $request)
+    {
+        $id=$request->id;
+        $consulta=Subtema::findOrFail($id);
+        $consulta->estadoSubtema=$request->estadoSubtema;
+        $consulta->conclusion=$request->conclusion;
+        $consulta->update();
+
+        return response()->json($consulta);
+        
+    }
+
+    
 }

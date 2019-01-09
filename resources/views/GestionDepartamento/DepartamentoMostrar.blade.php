@@ -4,7 +4,7 @@
        
            <thead>
                <th>Descripción</th>
-               <th colspan="2">Acciones</th>
+               <th colspan="3">Acciones</th>
                  
            </thead>
            <tbody id="tablaDepartamento">

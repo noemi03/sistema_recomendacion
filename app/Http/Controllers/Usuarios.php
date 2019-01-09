@@ -35,14 +35,7 @@ class Usuarios extends Controller
      */
     public function store(Request $request)
     {
-    	 $this->validate($request,[
-            'name'=>'required',
-            'email'=>'required',
-            'password'=>'required'
-    
-            
-    
-        ]); 
+    	 
              
            $UseVar = new Usuario();
            $UseVar->name= $request->name;
@@ -52,41 +45,31 @@ class Usuarios extends Controller
            $UseVar->celular= $request->celular;
            $UseVar->email= $request->email;
            $UseVar->password= bcrypt($request->password);
-           $UseVar->estado= $request->estado ;
-           $UseVar->tipoUsuario_id= $request->tipoUsuario_id;
-            
-            if ($UseVar->save()) {
-                 return response()->json($UseVar);
-    
-            }else{
-                return back()->with('errormsj', '¡Error al guardar los datos!');
-    
-            }
+           $UseVar->estado="Activo";
+           $UseVar->tipousuario_id= $request->tipousuario_id;
+            $UseVar->save();
+
+            $usuarioall=Usuario::with(['TipoUsuariov2'])->find($UseVar->id);
+              return response()->json($usuarioall);
         
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    public function preparactualizarusuario($id){
+     $usuarioall=Usuario::with(['TipoUsuariov2'])->find($id);
+        return response()->json($usuarioall);
+     }
+      /*FUNCIÓN PARA MOSTRAR TODOS LOS SUBTEMA*/
+    public function listausuario(){
+    $usuarioall=Usuario::with(['TipoUsuariov2'])->where ('estado','Activo')->get();
+         return response()->json($usuarioall);   
+      
+      }
+      
     public function edit($id)
     {
-        //$tipoUsuario= TipoUsuario::all();
-        $User=Usuario::find($id);
-       return response()->json($User);
+        $tipoUsuario= TipoUsuario::all();
+        $User=Usuario::find($id);     
+        return view('GestionUsuario.usuario')->with(['edit' => true,'User'=>$User,'tipoUsuario'=> $tipoUsuario]);
     }
 
     /**
@@ -99,12 +82,7 @@ class Usuarios extends Controller
     public function update(Request $request, $id)
     {
         
-        $this->validate($request,[
-            'name'=>'required',
-            'email'=>'required',
-            'password'=>'required'
-        ]); 
-             
+          
            $UseVar = Usuario::find($id);
            $UseVar->name= $request->name;
            $UseVar->apellidos= $request->apellidos;
@@ -113,16 +91,11 @@ class Usuarios extends Controller
            $UseVar->celular= $request->celular;
            $UseVar->email= $request->email;
            $UseVar->password= $request->password;
-           $UseVar->estado= $request->estado;
-           $UseVar->tipoUsuario_id= $request->tipoUsuario_id;
+           $UseVar->tipousuario_id= $request->tipousuario_id;
+            $UseVar->save();
             
-            if ($UseVar->save()) {
-               return response()->json($UseVar);
-    
-            }else{
-                return back()->with('errormsj', '¡Error al guardar los datos!');
-    
-            }
+            $usuarioall=Usuario::with(['TipoUsuariov2'])->find($UseVar->id);
+              return response()->json($usuarioall);
     }
 
     /**
@@ -131,6 +104,13 @@ class Usuarios extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function eliminarusuario($id){
+          $UseVar=Usuario::find($id);
+          $UseVar->estado="Inactivo";
+         $UseVar->save();
+          return response()->json($UseVar);
+    }
+
     public function destroy($id)
     {
 

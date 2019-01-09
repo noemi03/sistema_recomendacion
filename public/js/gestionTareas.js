@@ -13,10 +13,12 @@ function ingresarTareas(){
     });
 
     var FrmData = {
-        descripcion:$('#tarea_descripcion').val(),
-        porcentajeCumplimiento:$('#tarea_porcentajeCumplimiento').val(),
-        porcentajeEquivalente:$('#tarea_porcentajeEquivalente').val(),
-        recomendacionesDepartamentoid: $('#tarea_recomendacionD').val(),
+        descripcionTarea:$('#tarea_descripcionTarea').val(),
+        porcentajeCumplimientotarea:$('#tarea_porcentajeCumplimientotarea').val(),
+        estadoTarea:$('#tarea_estadoTarea').val(),
+        fechaCreacion:$('#tarea_fechaCreacion').val(),
+        fecha:$('#tarea_fecha').val(),
+        recomendacionesusuarios_id: $('#tarea_recomendacionesusuarios_id').val(),
         
     
     }
@@ -74,20 +76,25 @@ function prepararactualizarTarea(id){
 
       
         $('#idTarea').val(data.id);
-        $('#tareadescripcion').val(data.descripcion);
-        $('#tareaporcentajeCumplimiento').val(data.porcentajeCumplimiento);
-        $('#tarea_porcentajeEquivalente').val(data.porcentajeEquivalente);
-        $('#tarearecope').val(data.r_departamento.id);                   
+        $('#tarea_d').val(data.descripcionTarea);
+        $('#tarea_p').val(data.porcentajeCumplimientotarea);
+        $('#tarea_e').val(data.estadoTarea);
+        $('#tarea_fC').val(data.fechaCreacion);
+        $('#tarea_f').val(data.fecha);
+        $('#tarea_r').val(data.recomendacionesusuarios_id); 
+                           
     });
 }
 /*PARA ACTUALIZAR LOS DATOS DEL TAREA*/
 function TareasUpdate(){ 
    var FrmData = {
         id: $('#idTarea').val(),
-        descripcion:$('#tareadescripcion').val(),
-        porcentajeCumplimiento:$('#tareaporcentajeCumplimiento').val(),
-        porcentajeEquivalente:$('#tarea_porcentajeEquivalente').val(),
-        recomendacionesDepartamentoid:$('#tarearecope').val(),
+        descripcionTarea:$('#tarea_d').val(),
+        porcentajeCumplimientotarea:$('#tarea_p').val(),
+        estadoTarea:$('#tarea_e').val(),
+        fechaCreacion:$('#tarea_fC').val(),
+        fecha:$('#tarea_f').val(),
+        recomendacionesusuarios_id:$('#tarea_r').val(),
     
     }
 
@@ -111,22 +118,26 @@ function TareasUpdate(){
 
 /*PARA LIMPIAR LOS COMPONENTES DEL FORMULARIO*/
 function limpiar(){
-    $('#tarea_descripcion').val('');
-    $('#tarea_porcentajeCumplimiento').val('');
-    $('#tarea_porcentajeEquivalente').val('');
+    $('#tarea_descripcionTarea').val('');
+    $('#tarea_porcentajeCumplimientotarea').val('');
+    $('#tarea_estadoTarea').val('');
+    $('#tarea_fechaCreacion').val('');
+    $('#tarea_fecha').val('');
 }
 
 
-/*FUNCIÓN PARA CARGAR LOS TAREA EN LA TABLA*/
+/*FUNCIÓN PARA CARGAR LOS TAREA EN LA TABLA*/ 
 
 function cargartablaTarea(data){
   
     $("#tablatareas").append(
         "<tr id='fila_cod"+"'>\
-         <td>"+ data.descripcion+"</td>\
-         <td>"+ data.porcentajeCumplimiento+"</td>\
-         <td>"+ data.porcentajeEquivalente+"</td>\
-         <td>"+ data.r_departamento.estado+"</td>\
+         <td>"+ data.descripcionTarea+"</td>\
+         <td>"+ data.porcentajeCumplimientotarea+"</td>\
+         <td>"+ data.estadoTarea+"</td>\
+         <td>"+ data.fechaCreacion+"</td>\
+         <td>"+ data.fecha+"</td>\
+         <td>"+ data.recomendaciones_usuarios_v2.estadoRecomendacionUsuario+"</td>\
          <td class='row'><button type='button' class='btn btn-success' data-toggle='modal' data-target='#actualizarTareasmodal'onClick='prepararactualizarTarea("+data.id+")'><i class='fa fa-edit'></i></button></td>\
          <td class='row'><button type='button' class='btn btn-danger' id='btn-confirm' onClick='eliminarTareas("+data.id+")'><i class='fa fa-trash'></i></button></td>\
          </tr>"
@@ -134,27 +145,3 @@ function cargartablaTarea(data){
 }
 
 
-
-/*FUNCIÓN PARA BUSCAR LOS TAREA EN LA TABLA*/
-$("#B_Tareas").keyup(function() {
-    
-    //alert("hola");
-    $.get('buscarTarea/'+$('#B_Tareas').val() , function (data) { //ruta que especifica que metodo ejecutar en resource
-               // limpia el tbody de la tabla
-               //alert(2); 
-               $('#tablatareas').html('');
-              $.each(data, function(i, item) { // recorremos cada uno de los datos que retorna el objero json n valores
-                $("#tablatareas").append(
-                       "<tr id='"+item.id+"'>"+
-                        "<td>"+ item.descripcion+"</td>"+
-                        "<td>"+ item.porcentajeCumplimiento+"</td>"+
-                        "<td>"+ item.porcentajeEquivalente+"</td>"+
-                        "<td>"+ item.r_departamento.estado+"</td>"+
-                        "<td class='row'><button type='button' class='btn btn-success' data-toggle='modal' data-target='#actualizarTareasmodal' onClick='prepararactualizarTarea("+item.id+")'><i class='fa fa-edit'></i></button></td>"+
-                        "<td class='row'><button type='button' class='btn btn-danger' id='btn-confirm' onClick='eliminarTareas("+item.id+")'><i class='fa fa-trash'></i></button></td></tr>"
-                 );
-                 
-          }); 
-     });
- });
- 

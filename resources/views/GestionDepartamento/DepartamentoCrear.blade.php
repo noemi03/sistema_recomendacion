@@ -14,11 +14,11 @@
 
     {{ csrf_field() }} <!-- Para validar el token -->
     <div class="form-group">
-        <label for="descripcion">Descripcion</label>
-        <input type="text" class="form-control" name="descripcion"  id="descripcion" placeholder="Ingrese la descripcion">
+        <label for="descripcionDepartamento">Descripcion</label>
+        <input type="text" class="form-control" name="descripcionDepartamento"  id="descripcionDepartamento" placeholder="Ingrese la descripcion">
 
-        @if($errors->has('descripcion'))
-            <span style='color:red;'> {{ $errors->first('descripcion') }} </span>
+        @if($errors->has('descripcionDepartamento'))
+            <span style='color:red;'> {{ $errors->first('descripcionDepartamento') }} </span>
         @endif 
     </div>
 

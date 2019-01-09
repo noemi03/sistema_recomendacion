@@ -23,6 +23,14 @@
             <span style='color:red;'> {{ $errors->first('fechaAprobacion') }} </span>
         @endif 
     </div>
+    <div class="form-group">
+        <label for="fechaLimite">fecha limite</label>
+        <input type="date" class="form-control" name="fechaLimite"  value="{{$informes->fechaLimite }}">
+
+        @if($errors->has('fechaLimite'))
+            <span style='color:red;'> {{ $errors->first('fechaLimite') }} </span>
+        @endif 
+    </div>
      <div class="form-group">
         <label for="memorandoSolicitud">memorandoSolicitud</label>
         <input type="text" class="form-control" name="memorandoSolicitud"   value="{{$informes->memorandoSolicitud }}">
@@ -52,6 +60,28 @@
         <label for="codigoInforme">codigoInforme</label>
         <input type="text" class="form-control" name="codigoInforme"   value="{{$informes->codigoInforme}}">
 
+    </div>
+      <div class="form-group">
+        <label for="estadoInforme">estadoInforme</label>
+        <input type="text" class="form-control" name="estadoInforme"   value="{{$informes->estadoInforme}}">
+
+    </div>
+    <div class="form-group">
+        <label for="tipoInforme_id">Tipo Informe</label>
+        <select class="form-control" name="tipoInforme_id">
+            @foreach($tipoInforme as $s)
+                {{-- <option value="{{ $s->id }}">{{ $s->tipoInforme }}</option> --}}
+                @if($informes->tipoInforme_id== $s->id )
+                    <option value="{{ $s->id}}"  selected >{{ $s->tipoInforme }}</option>
+                @else
+                    <option value="{{ $s->id}}">{{ $s->tipoInforme}}</option>
+                @endif
+            @endforeach
+       </select>
+
+       @if($errors->has('tipoInforme_id'))
+        <span style='color:red;'> {{ $errors->first('tipoInforme_id') }} </span>
+        @endif 
     </div>
 
 

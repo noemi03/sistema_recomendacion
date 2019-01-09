@@ -10,20 +10,10 @@ class Departamento extends Model
     
     public $timestamps=false;
 
-    protected $fillable=['descripcion'];
+    protected $fillable=['descripcionDepartamento'];
 
-     public function  RecomendacionesDepartamento()
-    {    
-     return $this->hasMany('App\RecomendacionesDepartamento','departamento_id','id');
-    }
-    public function  Departamentouser()
-    {    
-     return $this->hasMany('App\Departamentouser','iddepartamento','id');
-    }
-    
-
-    public function miRecomendacion(){
-        return $this->hasOne('App\RecomendacionesDepartamento','departamento_id', 'id')->with('Recoment');
-    }
-
+     
+    public function  CargoDepartamento(){
+        return $this->hasMany('App\CargoDepartamento','departamento_id', 'id');
+        }
 }

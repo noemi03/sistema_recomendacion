@@ -11,7 +11,7 @@ function ingresarActividad(){
     });
 //alert("hola");
     var FrmData = {
-        descripcionA:$('#actividad_descripcion').val(),
+        descripcionActividad:$('#actividad_descripcion').val(),
         fecha: $('#actividad_fecha').val(),
         tarea_id: $('#actividad_tarea').val(),
 
@@ -72,7 +72,7 @@ function prepararactualizarActividad(id){
    
     $.get('preparactualizarActividad/'+id,function(data){
         $('#idActividad').val(data.id);
-        $('#descripcionAidfz').val(data.descripcionA);
+        $('#descripcionA').val(data.descripcionActividad);
         $('#fechaF').val(data.fecha); 
         $('#TareaA').val(data.tareas_v2.id);                   
     });
@@ -82,7 +82,7 @@ function ActividadUpdate(){
 
    var FrmData = {
         id: $('#idActividad').val(),
-        descripcionA:$('#descripcionAidfz').val(),
+        descripcionActividad:$('#descripcionA').val(),
         fecha:$('#fechaF').val(),
         tarea_id:$('#TareaA').val(),
     
@@ -118,9 +118,9 @@ function cargartablaActividad(data){
   //debugger
     $("#tablaactividad").append(
         "<tr id='fila_cod"+"'>\
-         <td>"+ data.descripcionA+"</td>\
+         <td>"+ data.descripcionActividad+"</td>\
          <td>"+ data.fecha+"</td>\
-         <td>"+ data.tareas_v2.descripcion+"</td>\
+         <td>"+ data.tareas_v2.descripcionTarea+"</td>\
          <td class='row'><button type='button' class='btn btn-success' data-toggle='modal' data-target='#actualizarActividadmodal' onClick='prepararactualizarActividad("+data.id+")'><i class='fa fa-edit'></i></button></td>\
          <td class='row'> <button type='button' class='btn btn-danger' id='btn-confirm' onClick='eliminarActividad("+data.id+")'><i class='fa fa-trash'></i></button></td>\
          </tr>"
@@ -131,49 +131,9 @@ function cargartablaActividad(data){
 
 
 
-$( "#buscar_Actividad" ).keyup(function() {
-  
- 
-    $.get('buscarActividad/'+$( "#buscar_Actividad").val()+'/'+ $('#dtpFecha').val(), function (data) { //ruta que especifica que metodo ejecutar en resource
-              // limpia el tbody de la tabla
-              //alert(2); 
-              $('#tablaactividad').html('');
-             $.each(data, function(i, item) { // recorremos cada uno de los datos que retorna el objero json n valores
-               $("#tablaactividad").append(
-                      "<tr id='"+item.id+"'>"+
-                       "<td>"+ item.descripcionA+"</td>"+
-                         "<td>"+ item.fecha+"</td>"+
-                       "<td>"+ item.tareas_v2.descripcion+"</td>"+
-                       "<td class='row'><button type='button' class='btn btn-success' data-toggle='modal' data-target='#actualizarActividadmodal' onClick='prepararactualizarActividad("+item.id+")'><i class='fa fa-edit'></i></button></td>"+
-                       "<td class='row'><button type='button' class='btn btn-danger' id='btn-confirm' onClick='eliminarActividad("+item.id+")'><i class='fa fa-trash'></i></button></td></tr>"
-                );
-                
-         }); 
-    });
-});
-
-$( "#dtpFecha" ).change(function() {
-   //alert($( "#dtpFecha" ).val());
-   $.get('buscarActividad2/'+$('#dtpFecha').val() , function (data) { //ruta que especifica que metodo ejecutar en resource
-              // limpia el tbody de la tabla
-              //alert(2); 
-              $('#tablaactividad').html('');
-             $.each(data, function(i, item) { // recorremos cada uno de los datos que retorna el objero json n valores
-               $("#tablaactividad").append(
-                      "<tr id='"+item.id+"'>"+
-                       "<td>"+ item.descripcionA+"</td>"+
-                         "<td>"+ item.fecha+"</td>"+
-                       "<td>"+ item.tareas_v2.descripcion+"</td>"+
-                       "<td class='row'><button type='button' class='btn btn-success' data-toggle='modal' data-target='#actualizarActividadmodal' onClick='prepararactualizarActividad("+item.id+")'><i class='fa fa-edit'></i></button></td>"+
-                       "<td class='row'><button type='button' class='btn btn-danger' id='btn-confirm' onClick='eliminarActividad("+item.id+")'><i class='fa fa-trash'></i></button></td></tr>"
-                );
-                
-         }); 
-    });
-});
-
 //btnRefrescar
 
 $( "#btnRefrescar" ).click(function() {
   mostrarActividad();
 });
+

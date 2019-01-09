@@ -61,18 +61,13 @@
              <li class="treeview">
                 <a href="#"><i class='fa fa-bar-chart-o'></i> <span> GESTION REGISTRO</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ url('/Avance')}} "><i class="fa fa-file-text-o"></i>Gestion Avances </a></li> 
-                    <li><a href="{{ url('/Actividad')}}"><i class="fa fa-list"></i>Gestion Actividad</a></li>
+                  <li><a href="{{ url('/Cargo')}} "><i class="fa fa-file-text-o"></i>Gestion Cargo </a></li>  
                     <li><a href="{{ url('/Departamento') }}"><i class="fa fa-university"></i>Gestion Departamento</a></li>
-                    <li><a href="{{ url('/Estado')}}"><i class="fa fa-cogs"></i>Gestion Estado</a></li>
+                    <li><a href="{{ url('/TipoInforme')}}"><i class="fa fa-file-o"></i>Gestion Tipo de Informe</a></li> 
                     <li><a href="{{ url('/Informe')}}"><i class="fa fa-list-alt" ></i>Gestion Informe</a></li>
                     <li><a href="{{ url('/subtema')}}"><i class="fa fa-file-o"></i>Gestion Subtema</a></li> 
-                    <li><a href="{{ url('/recomendaciones')}}"><i class="fa fa-file"></i>Gestion Recomendacion </a></li> 
-                    <!-- <li><a href="{{ url('/RecomendacionesDepartamento')}}"><i class="fa fa-archive"></i>Gestion RecomendacionesD</a></li> -->
-                    <li><a href="{{ url('/TipoRecomendacion') }}"><i class="fa fa-file-o"></i> Gestion TRecomendacion </a></li> 
-                    <li><a href="{{ url('/Tarea')}}"><i class="fa fa-bar-chart"></i>Gestion Tarea</a></li>
-                
-                    
+                    <li><a href="{{ url('/Actividad')}}"><i class="fa fa-file-o"></i>Gestion Actividad</a></li> 
+                    <li><a href="{{ url('/Recomendacion')}}"><i class="fa fa-file-o"></i>Gestion Recomendaciones</a></li> 
 
                 </ul>
             </li>

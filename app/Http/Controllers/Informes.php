@@ -4,21 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Informe;
-use storage;
+use App\TipoInforme;
+
 
 
 class Informes extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource.k
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-
-        $informes=Informe::all();
-        return view ('GestionInforme.informe')->with(['informes'=>$informes]);
+    {  
+        $tipoInforme= TipoInforme::with('Informe')->get();
+        $informes= Informe::with('TipoInforme')->get(); 
+        return view('GestionInforme.informe')->with(['informes'=>$informes,'tipoInforme'=>$tipoInforme ]);
     }
 
     /**
@@ -42,30 +43,36 @@ class Informes extends Controller
          
         $informeVar= new Informe();
         $informeVar->fechaAprobacion = $request->fechaAprobacion;
+        $informeVar->fechaLimite = $request->fechaLimite;
         $informeVar->memorandoSolicitud = $request->memorandoSolicitud;
         $informeVar->temaExamen = $request->temaExamen;
         $informeVar->porcentajeCumplido= $request->porcentajeCumplido;
-        $informeVar->observacion= $request->observacion;
+        $informeVar->observacion= "SIN OBSERVACION";
         $informeVar->codigoInforme = $request->codigoInforme;
-      
+        $informeVar->estadoInforme = "SIN ASIGNACION";
+        $informeVar->tipoInforme_id = $request->tipoInforme_id;
 
-
-   
-        $informeVar->save();
-        return response()->json($informeVar);
-          
+        if ($informeVar->save()) {
+             $informeall=Informe::with(['TipoinformeV2'])->find($informeVar->id);
+              return response()->json($informeall);
+        } else {
+            return back()->with('errormsj', '¡Error al guardar los datos!');
+        }
+        
     }
 
     public function actualizarInforme($id)
     {
-        $informeVar = Informe::find($id);
-        return response()->json($informeVar);
-    }
+        $informeall=Informe::with(['TipoinformeV2'])->find($id);
+        return response()->json($informeall);
 
+    }
+  //mostrar
     public function listarInforme()
     {
-        $informeVar = Informe::all();
-        return response()->json($informeVar);
+        $informeall=Informe::with(['TipoinformeV2'])->get();
+        return response()->json($informeall);
+        
     }
     
 
@@ -93,8 +100,9 @@ class Informes extends Controller
 
     public function edit($id)
     {
-          $informes=Informe::find($id);
-        return view('GestionInforme.informe')->with(['edit' =>true,'informes'=>$informes]);
+        $tipoInforme = TipoInforme::all();
+        $informes = Informe::find($id);      
+        return view('GestionInforme.informe')->with(['edit' => true,'informes'=>$informes,'tipoInforme'=>$tipoInforme]);
     }
 
     /**
@@ -106,20 +114,24 @@ class Informes extends Controller
      */
     public function update(Request $request, $id)
     {
-         
-
 
         $informeVar= Informe::find($id);
         $informeVar->fechaAprobacion = $request->fechaAprobacion;
+        $informeVar->fechaLimite = $request->fechaLimite;
         $informeVar->memorandoSolicitud = $request->memorandoSolicitud;
         $informeVar->temaExamen = $request->temaExamen;
         $informeVar->porcentajeCumplido= $request->porcentajeCumplido;
         $informeVar->observacion= $request->observacion;
         $informeVar->codigoInforme = $request->codigoInforme;
-        
-        $informeVar->save();
+        $informeVar->estadoInforme = $request->estadoInforme;
+        $informeVar->tipoInforme_id = $request->tipoInforme_id;
 
-        return response()->json($informeVar);
+        if ($informeVar->save()) {
+             $informeall=Informe::with(['TipoinformeV2'])->find($informeVar->id);
+              return response()->json($informeall);
+        } else {
+            return back()->with('errormsj', '¡Error al guardar los datos!');
+        }
             
         
     }
@@ -135,5 +147,16 @@ class Informes extends Controller
         
         $informeVar = Informe::find($id);
         $informeVar->delete();
+    }
+    public function modificarInforme(Request $request)
+    {
+        $id=$request->id;
+        $consulta=Informe::findOrFail($id);
+        $consulta->estadoInforme=$request->estadoInforme;
+        $consulta->observacion=$request->observacion;
+        $consulta->update();
+
+        return response()->json($consulta);
+        
     }
 }

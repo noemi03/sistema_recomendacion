@@ -10,7 +10,7 @@ class Actividad extends Model
   
     public $timestamps=false;
     protected $fillable = [
-        'descripcionA','fecha','tarea_id'];
+        'descripcionActividad','fecha','tarea_id'];
 
 
     public function Tareas()
@@ -18,9 +18,7 @@ class Actividad extends Model
       return $this->belongsTo('App\Tarea','tarea_id','id');
     }
     
-   public function  Avance(){
-        return $this->hasMany('App\Avance','id');
-    }
+  
      public function TareasV2()
     {    
       return $this->hasOne('App\Tarea','id','tarea_id');

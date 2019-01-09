@@ -21,7 +21,7 @@
           
     <div class="container">
             <div class="row">
-                    <div class="col-md-10">
+                    <div class="col-md-11">
                         <div class="panel " >
                         <legend class="text-center header">
                             <span class=" text-center"><i class="fa fa-list"></i></span>
@@ -46,7 +46,7 @@
 
 
         <div class="row">
-                    <div class="col-md-10">
+                    <div class="col-md-11">
                         <div class="panel " >
                         <legend class="text-center header">
                             <span class=" text-center"><i class="fa fa-list"></i></span>
@@ -71,7 +71,7 @@
   </div>
 </div>
  @include('GestionActividad.modalActivadad')
-@endsection
+ @endsection
 
            <script>
               $(function () {

@@ -16,11 +16,11 @@
 
     {{ csrf_field() }}
     <div class="form-group">
-        <label for="descripcion">Descripción</label>
-        <input type="text" class="form-control" name="descripcion"  value="{{ $tipo->descripcion }}">
+        <label for="descripciontipo">Descripción</label>
+        <input type="text" class="form-control" name="descripciontipo"  value="{{ $tipo->descripciontipo }}">
 
-        @if($errors->has('descripcion'))
-            <span style='color:red;'> {{ $errors->first('descripcion') }} </span>
+        @if($errors->has('descripciontipo'))
+            <span style='color:red;'> {{ $errors->first('descripciontipo') }} </span>
         @endif 
     </div>
     

@@ -13,43 +13,88 @@
 <form role="form" method="POST" enctype="multipart/form-data">
 
     {{ csrf_field() }} <!-- Para validar el token -->
-    <div class="form-group">
-        <label for="descripcion">Descripcion</label>
-        <input type="text" class="form-control" name="descripcion" id="tarea_descripcion" placeholder="Ingrese la descripcion">
-
-        @if($errors->has('descripcion'))
-            <span style='color:red;'> {{ $errors->first('descripcion') }} </span>
-        @endif 
-    </div>
-    <div class="form-group">
-        <label for="porcentajeCumplimiento">Porcentaje Cumplimiento</label>
-        <input type="text" class="form-control" name="porcentajeCumplimiento" id="tarea_porcentajeCumplimiento" placeholder="Ingrese la descripcion">
-
-       
-    </div>
-    <div class="form-group">
-        <label for="porcentajeEquivalente">Porcentaje Equivalente</label>
-        <input type="text" class="form-control" name="porcentajeEquivalente" id="tarea_porcentajeEquivalente" placeholder="Ingrese la descripcion">
-
+    
+    
+    <div class="col-md-4 ">
+     <div class="panel ">
+     <div class="form-group">
+     <label for="descripcionTarea">Descripcion</label>
+     <input type="text" class="form-control" name="descripcionTarea" id="tarea_descripcionTarea" placeholder="Ingrese la descripcion">
          
     </div>
+    </div>
+    </div>
+
+     <div class="col-md-4 ">
+     <div class="panel ">
+    <div class="form-group">
+        <label for="porcentajeCumplimientotarea">Porcentaje Cumplimiento</label>
+       <input type="text" class="form-control" name="porcentajeCumplimientotarea" id="tarea_porcentajeCumplimientotarea" placeholder="Ingrese el porcentaje">
+     
+    </div>
+    </div>
+    </div>
+
+
+     <div class="col-md-4 ">
+     <div class="panel ">
+     <div class="form-group">
+        <label for="estadoTarea">Estado</label>
+        <input type="text" class="form-control" name="estadoTarea" id="tarea_estadoTarea" placeholder="Ingrese el estado">
+
+    </div>
+    </div>  
+    </div>
     
+    <div class="col-md-4">
+     <div class="panel ">
+    <div class="form-group">
+        <label for="fechaCreacion">Fecha Creacion</label>
+        <input type="date" class="form-control" name="fechaCreacion" id="tarea_fechaCreacion" placeholder="Ingrese la fecha">
+
+    </div>  
+    </div>   
+    </div>
+
+    <div class="col-md-4">
+     <div class="panel ">
+     <div class="form-group">
+        <label for="fecha">Fecha</label>
+        <input type="date" class="form-control" name="fecha" id="tarea_fecha" placeholder="Ingrese la descripcion">
+
+    </div>   
+    </div>  
+    </div>
+
+    <div class="col-md-4 ">
+     <div class="panel ">
       <div class="form-group">
-        <label for="recomendacionesDepartamentoid">Recomendacion</label>
-        <select class="form-control" name="recomendacionesDepartamentoid" id="tarea_recomendacionD">
+        <label for="recomendacionesusuarios_id">Recomendacion Usuarios</label>
+        <select class="form-control" name="recomendacionesusuarios_id" id="tarea_recomendacionesusuarios_id">
         
-            @foreach($reco as $s)
+            @foreach($recomendacionesUsuarios as $s)
                
-                <option value="{{ $s->id }}">{{ $s->estado}}</option>
+                <option value="{{ $s->id }}">{{ $s->codigoDocumento}}</option>
           
             @endforeach
            
        </select>
-
-       @if($errors->has('$recomendacionesDepartamentoid'))
-        <span style='color:red;'> {{ $errors->first('$recomendacionesDepartamentoid') }} </span>
-        @endif 
+      
     </div>
+    </div>  
+    </div>
+    
+<div class="col-md-10 ">
+<div class="panel " >
+ <button type="button" class="btn btn-primary btn-lg"  onclick="ingresarTareas()"><i class="fa fa-floppy-o " aria-hidden="true"></i></button>
+</div>
+</div>
 
-  <button type="button" class="btn btn-primary btn-lg"  onclick="ingresarTareas()"><i class="fa fa-floppy-o " aria-hidden="true"></i></button>
+
+<div class="col-md-2 ">
+<div class="panel " >
+   <td><a href="Actividad" class="create-modal btn btn-primary btn-block btn-flat ">Salir</a></td>
+</div>
+</div>
+
 </form>

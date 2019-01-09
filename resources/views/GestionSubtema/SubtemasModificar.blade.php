@@ -16,11 +16,11 @@
 
     {{ csrf_field() }}
     <div class="form-group">
-        <label for="descripcion">Descripción</label>
-        <input type="text" class="form-control" name="descripcion"  value="{{ $subtemas->descripcion }}">
+        <label for="descripcionSubtema">Descripción Subtema</label>
+        <input type="text" class="form-control" name="descripcionSubtema"  value="{{ $subtemas->descripcionSubtema }}">
 
-        @if($errors->has('descripcion'))
-            <span style='color:red;'> {{ $errors->first('descripcion') }} </span>
+        @if($errors->has('descripcionSubtema'))
+            <span style='color:red;'> {{ $errors->first('descripcionSubtema') }} </span>
         @endif 
     </div>
     
@@ -33,13 +33,22 @@
         @endif 
     </div>
     <div class="form-group">
-        <label for="porcentajeCumplido">Cumplimiento</label>
-        <input type="text" class="form-control" name="porcentajeCumplido"  value="{{ $subtemas->porcentajeCumplido }}">
+        <label for="porcentajeCumplidoSubtema">%Cumplimiento Subtema</label>
+        <input type="text" class="form-control" name="porcentajeCumplidoSubtema"  value="{{ $subtemas->porcentajeCumplidoSubtema }}">
 
         @if($errors->has('porcentajeCumplido'))
             <span style='color:red;'> {{ $errors->first('porcentajeCumplido') }} </span>
         @endif 
     </div>
+    <div class="form-group">
+        <label for="estadoSubtema">Estado Subtema</label>
+        <input type="text" class="form-control" name="estadoSubtema"  value="{{ $subtemas->estadoSubtema }}">
+
+        @if($errors->has('estadoSubtema'))
+            <span style='color:red;'> {{ $errors->first('estadoSubtema') }} </span>
+        @endif 
+    </div>
+
       <div class="form-group">
         <label for="informe_id">Informe</label>
         <select class="form-control" name="informe_id">

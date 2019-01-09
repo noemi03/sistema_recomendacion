@@ -27,49 +27,69 @@
 @endif 
 
 
-@if(isset($tarea))
-<form role="form" method="POST" action="{{route('Tarea.update',$tarea->id) }}" enctype="multipart/form-data">
+@if(isset($tareas))
+<form role="form" method="POST" action="{{route('Tarea.update',$tareas->id) }}" enctype="multipart/form-data">
 <input name="_method" type="hidden" value="PUT">
 
     {{ csrf_field() }}
     <div class="form-group">
-        <label for="descripcion">Descripción</label>
-        <input type="text" class="form-control" name="descripcion"  value="{{$tarea->descripcion}}">
+        <label for="descripcionTarea">Descripción</label>
+        <input type="text" class="form-control" name="descripcionTarea"  value="{{$tareas->descripcionTarea}}">
 
-        @if($errors->has('descripcion'))
-            <span style='color:red;'> {{ $errors->first('descripcion') }} </span>
+        @if($errors->has('descripcionTarea'))
+            <span style='color:red;'> {{ $errors->first('descripcionTarea') }} </span>
         @endif 
     </div>
     <div class="form-group">
-        <label for="porcentajeCumplimiento">Porcentaje Cumplimiento</label>
-        <input type="text" class="form-control" name="porcentajeCumplimiento"  value="{{$tarea->porcentajeCumplimiento}}">
+        <label for="porcentajeCumplimientotarea">Porcentaje Cumplimiento</label>
+        <input type="text" class="form-control" name="porcentajeCumplimientotarea"  value="{{$tareas->porcentajeCumplimientotarea}}">
 
         @if($errors->has('porcentajeCumplimiento'))
             <span style='color:red;'> {{ $errors->first('porcentajeCumplimiento') }} </span>
         @endif 
     </div>
     <div class="form-group">
-        <label for="porcentajeEquivalente">Porcentaje Equivalente</label>
-        <input type="text" class="form-control" name="porcentajeEquivalente"  value="{{$tarea->porcentajeEquivalente}}">
+        <label for="estadoTarea">Estado</label>
+        <input type="text" class="form-control" name="estadoTarea"  value="{{$tareas->estadoTarea}}">
 
-        @if($errors->has('porcentajeEquivalente'))
-            <span style='color:red;'> {{ $errors->first('porcentajeEquivalente') }} </span>
+        @if($errors->has('estadoTarea'))
+            <span style='color:red;'> {{ $errors->first('estadoTarea') }} </span>
+        @endif 
+    </div>
+    
+    <div class="form-group">
+        <label for="fechaCreacion">Fecha Creacion</label>
+        <input type="date" class="form-control" name="fechaCreacion"  value="{{$tareas->fechaCreacion}}">
+
+        @if($errors->has('fechaCreacion'))
+            <span style='color:red;'> {{ $errors->first('fechaCreacion') }} </span>
+        @endif 
+    </div>
+    
+
+
+     <div class="form-group">
+        <label for="fecha">Fecha</label>
+        <input type="date" class="form-control" name="fecha"  value="{{$tareas->fecha}}">
+
+        @if($errors->has('fecha'))
+            <span style='color:red;'> {{ $errors->first('fecha') }} </span>
         @endif 
     </div>
     
     
 <div class="form-group row">
-    <label for="recomendacionesDepartamentoid" class="col-sm-2 col-form-label">Recomendaciones Departamento</label>
+    <label for="recomendacionesusuarios_id" class="col-sm-2 col-form-label">Recomendaciones Usuarios</label>
     <div class="col-sm-10">
-      <select class="form-control" name="recomendacionesDepartamentoid" >
+      <select class="form-control" name="recomendacionesusuarios_id" >
         
-        @foreach($reco as $t)
+        @foreach($recomendacionesUsuarios as $t)
 
-         @if($tarea->recomendacionesDepartamentoid == $t->estado)
+         @if($tareas->recomendacionesusuarios_id == $t->codigoDocumento)
          
-        <option value="{{$t->id}}" selected>{{$t->estado}}</option>
+        <option value="{{$t->id}}" selected>{{$t->codigoDocumento}}</option>
           @else
-          <option value="{{$t->id}}">{{$t->estado}}</option>
+          <option value="{{$t->id}}">{{$t->codigoDocumento}}</option>
           @endif
         @endforeach
 

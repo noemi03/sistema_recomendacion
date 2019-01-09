@@ -11,30 +11,28 @@ class Usuario extends Model
     public $timestamps=false;
 
     protected $fillable = [
-        'name', 'apellidos','cedula','sexo','celular', 'email','password','estado','tipoUsuario_id',
+        'name', 'apellidos','cedula','sexo','celular', 'email','password','estado','tipousuario_id',
     
  
     ];
 
    public function TipoUsuario (){
-        return $this->belongsTo('App\TipoUsuario','tipoUsuario_id', 'id');
+        return $this->belongsTo('App\TipoUsuario','tipousuario_id', 'id');
     }
     public function TipoUsuariov2 (){
-        return $this->hasOne('App\TipoUsuario','id', 'tipoUsuario_id');
+        return $this->hasOne('App\TipoUsuario','id', 'tipousuario_id');
     }
 
-public function  Departamentouser(){
-        return $this->hasMany('App\Departamentouser','idusuario','id');
-    }
+
+
+       public function  Cargouser(){
+        return $this->hasMany('App\CargoUsuario','users_id','id');
+     }
     
-     
-    //funciona
-    public function miDepartamento(){
-        return $this->hasOne('App\Departamentouser','idusuario', 'id')->with('Departament');
-    }
-
-    public function MisDepartamentos(){
-        return $this->hasOne('App\Departamentouser','idusuario', 'id')->with('Departament');
-    }
-
+     public function  RecomendacionesUsuarios(){
+        return $this->hasMany('App\RecomendacionUsuario','users_id','id');
+     }
+    
 }
+
+
